@@ -10,12 +10,25 @@ namespace CSharp_Delegates
         {
             performCalculation operation = new performCalculation(Addition);
 
-            int result = operation(2, 3);
+            operation += Multiplication;
+
+            int result = operation(1, 2);
+
+            operation -= Multiplication;
+
+            result = operation(1, 2);
+
             Console.WriteLine(result);
         }
         static int Addition(int x, int y)
         {
-            return x+ y;
+            Console.WriteLine("Performing addition...");
+            return x + y;
+        }
+        static int Multiplication(int x, int y)
+        {
+            Console.WriteLine("Performing multiplication...");
+            return x * y;
         }
     }
 }
