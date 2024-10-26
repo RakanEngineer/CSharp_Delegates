@@ -1,34 +1,103 @@
 ﻿using System;
+using static System.Console;
 
 namespace CSharp_Delegates
 {
     class Program
     {
-        delegate int performCalculation(int x, int y);
+        //delegate int performCalculation(int x, int y);
+        delegate void PerformAction();
 
         static void Main(string[] args)
         {
-            performCalculation operation = new performCalculation(Addition);
+            //performCalculation operation = new performCalculation(Addition);
+            //operation += Multiplication;
+            //int result = operation(1, 2);
+            //operation -= Multiplication;
+            //result = operation(1, 2);
+            //Console.WriteLine(result);
+            bool shouldNotExit = true;
+            while (shouldNotExit)
+            {
+                WriteLine("1. Silver package");
+                WriteLine("2. Gold package");
+                WriteLine("3. Platina package");
 
-            operation += Multiplication;
+                ConsoleKeyInfo keyPressed = ReadKey(true);
+                PerformAction clean = new PerformAction(Wash);
+                clean += Dry;
+                Clear();
 
-            int result = operation(1, 2);
+                switch (keyPressed.Key)
+                {
+                    case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
+                        //1. tvätas
+                        //2. torkes
+                        //Wash();
+                        //Dry();
+                        break;
 
-            operation -= Multiplication;
+                    case ConsoleKey.D2:
+                    case ConsoleKey.NumPad2:
+                        //1. tvätas
+                        //2. torkes
+                        //3. vaxning   
+                        //Wash();
+                        //Dry();
+                        //ApplyWax();
+                        clean += ApplyWax;
+                        break;
 
-            result = operation(1, 2);
+                    case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
+                        //1. tvätas
+                        //2. torkes
+                        //3. vaxning
+                        //4. städning
+                        //Wash();
+                        //Dry();
+                        //ApplyWax();
+                        //CleanInside();
+                        clean += ApplyWax;
+                        clean += CleanInside;
+                        break;
 
-            Console.WriteLine(result);
+                    case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
+                        shouldNotExit = false;
+                        break;
+                }
+                clean();
+                ReadKey(true);
+                Clear();
+            }
         }
-        static int Addition(int x, int y)
+        //static int Addition(int x, int y)
+        //{
+        //    Console.WriteLine("Performing addition...");
+        //    return x + y;
+        //}
+        //static int Multiplication(int x, int y)
+        //{
+        //    Console.WriteLine("Performing multiplication...");
+        //    return x * y;
+        //}
+        static void Wash()
         {
-            Console.WriteLine("Performing addition...");
-            return x + y;
+            WriteLine("Washing...");
         }
-        static int Multiplication(int x, int y)
+        static void Dry()
         {
-            Console.WriteLine("Performing multiplication...");
-            return x * y;
+            WriteLine("Drying...");
+        }
+        static void ApplyWax()
+        {
+            WriteLine("Applying wax...");
+        }
+        static void CleanInside()
+        {
+            WriteLine("Cleaning inside...");
         }
     }
 }
