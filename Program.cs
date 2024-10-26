@@ -68,10 +68,21 @@ namespace CSharp_Delegates
                         shouldNotExit = false;
                         break;
                 }
-                clean();
+                //clean();
+                StartProgram(clean);
                 ReadKey(true);
                 Clear();
             }
+        }
+
+        static void StartProgram(PerformAction actions)
+        {
+            Console.WriteLine("Starting program...");
+
+            actions();
+
+            Console.WriteLine("Program Done");
+
         }
         //static int Addition(int x, int y)
         //{
